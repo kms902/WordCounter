@@ -10,6 +10,11 @@ namespace WordCounter
     {
         static void Main(string[] args)
         {
+            string fileName = args[0];
+            string text = System.IO.File.ReadAllText(fileName);
+
+            WordCounter wordCounter = new WordCounter(text);
+     
         }
     }
 }
