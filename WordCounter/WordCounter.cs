@@ -8,21 +8,41 @@ namespace WordCounter
 {
     class WordCounter
     {
-        public WordCounter(string inputString)
-        {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+        private Dictionary<string, int> dict;
 
+        public WordCounter()
+        {
+            dict = new Dictionary<string, int>();
+        }
+
+        public void Start(string inputString)
+        {
             char[] delimiters = { ' ', ',', '.' };
             string[] words = inputString.Split(delimiters);
-            for(int i = 0; i < words.Length; i++)
+            for (int i = 0; i < words.Length; i++)
             {
-                if (dict.ContainsKey(words[i])){
-                    dict[words[i]] += 1;
+                if (dict.ContainsKey(words[i].ToLower()))
+                {
+                    dict[words[i].ToLower()] += 1;
                 }
                 else
                 {
-                    dict.Add(words[i], 1);
+                    dict.Add(words[i].ToLower(), 1);
                 }
+            }
+        }
+
+        public Dictionary<string, int> getDictionary()
+        {
+            return dict;
+        }
+
+        public void histogram()
+        {
+            string[] orderedWordArray;
+            for(int i = 0; i < dict.Count(); i++)
+            {
+                //dict.ElementAt(i).Value;
             }
         }
     }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Diagnostics;
 
 namespace WordCounter
 {
@@ -10,11 +12,28 @@ namespace WordCounter
     {
         static void Main(string[] args)
         {
-            string fileName = args[0];
-            string text = System.IO.File.ReadAllText(fileName);
+            // Run Tests
+            TestSimpleString();
 
-            WordCounter wordCounter = new WordCounter(text);
+            // Run Program
+            /*
+            string fileName = args[0];
+            string text = File.ReadAllText(fileName);
+
+            WordCounter wordCounter = new WordCounter();
+            wordCounter.Start(fileName);
+            */
+
      
+        }
+
+        public static void TestSimpleString()
+        {
+            string para = "This is a test to see the count of each word that is repeated in this sentence";
+            WordCounter wordCounter = new WordCounter();
+            wordCounter.Start(para);
+            Dictionary<string, int> wordCounts = wordCounter.getDictionary();
+            Debug.Assert(wordCounts["this"] == 2, "Test failure: Count of \"this\" not equal to 2.");
         }
     }
 }
