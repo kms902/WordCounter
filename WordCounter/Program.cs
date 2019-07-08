@@ -16,14 +16,17 @@ namespace WordCounter
             TestSimpleString();
 
             // Run Program
-            /*
-            string fileName = args[0];
+
+            //string fileName = args[0];
+            string fileName = "..\\..\\..\\TaleOfTwoCities.txt";
             string text = File.ReadAllText(fileName);
 
             WordCounter wordCounter = new WordCounter();
-            wordCounter.Start(fileName);
-            */
-
+            wordCounter.Start(text);
+            wordCounter.Histogram();
+            
+            Console.WriteLine("[PRESS ENTER TO EXIT PROGRAM]");
+            Console.ReadLine();
      
         }
 
@@ -34,6 +37,7 @@ namespace WordCounter
             wordCounter.Start(para);
             Dictionary<string, int> wordCounts = wordCounter.getDictionary();
             Debug.Assert(wordCounts["this"] == 2, "Test failure: Count of \"this\" not equal to 2.");
+            wordCounter.Histogram();
         }
     }
 }

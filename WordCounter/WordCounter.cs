@@ -17,7 +17,8 @@ namespace WordCounter
 
         public void Start(string inputString)
         {
-            char[] delimiters = { ' ', ',', '.' };
+            //Note: some ? marks are still escaping somehow
+            char[] delimiters = { ' ', ',', '.','/','?','!','\'','\"',';',':','\r','\n' };
             string[] words = inputString.Split(delimiters);
             for (int i = 0; i < words.Length; i++)
             {
@@ -37,13 +38,33 @@ namespace WordCounter
             return dict;
         }
 
-        public void histogram()
+        public void Histogram()
         {
+            // Convert the dictionary into a sorted list
+            //var sortedList = from word in dict orderby word.Value descending select word;
+            var sortedList = dict.OrderByDescending(e => e.Value).ThenBy(e => e.Key). ToList();
+
+            // Print the list with stars for the word count
+            for(int i = 0; i < sortedList.Count(); i++)
+            {
+                string starString = "";
+                for(int j = 0; j < sortedList[i].Value; j++)
+                {
+                    starString = starString + "*";
+                }
+                Console.WriteLine(sortedList[i].Key + ": " + starString);
+            }
+            
+
+            //Console.Write(sortedList[0].Key);
+
+            /*
             string[] orderedWordArray;
             for(int i = 0; i < dict.Count(); i++)
             {
                 //dict.ElementAt(i).Value;
             }
+            */
         }
     }
 }
